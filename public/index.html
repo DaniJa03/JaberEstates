@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Real Estates</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div id="app" class="container">
+      <div class="d-flex my-4">
+        <p class="mx-2">Get latest offers here:</p>
+        <button @click="getImmos()" class="btn btn-outline-primary">Show</button>
+      </div>
+      <div v-if="preis" class="d-flex my-2">
+        <input v-model="preis" class="form-control w-25 mx-1" />
+        <button @click="patchImmo(id)" class="btn btn-outline-success">
+          <i class="fa-solid fa-check"></i>
+        </button>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Address</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr v-for="i of immos">
+            <td class="align-middle">
+              <a :href="i.image"><img :src="`${i.image}`" width="200" /></a>
+            </td>
+            <td class="align-middle">{{i.title}}</td>
+            <td class="align-middle">{{i.postCode}} {{i.city}} {{i.country}}</td>
+            <td class="align-middle">{{i.price.toLocaleString()}} €</td>
+            <td class="align-middle">
+              <button
+                @click="delImmo(i.id)"
+                class="fa-regular fa-trash-can btn btn-outline-danger mx-1"
+              ></button
+              ><button @click="editImmo(i)" class="btn btn-outline-primary">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"
+      integrity="sha512-L4lHq2JI/GoKsERT8KYa72iCwfSrKYWEyaBxzJeeITM9Lub5vlTj8tufqYk056exhjo2QDEipJrg6zen/DDtoQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.45/vue.global.prod.min.js"
+      integrity="sha512-3CesFAr6COyDB22AiVG2erk2moD1FeL3VMx6UezptTW3qmYdcQhfv6yDGmH4ICNTxd0Rs2AbMQ0Q5lG7J/8n3Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
