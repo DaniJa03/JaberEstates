@@ -11,7 +11,7 @@ const myApp = {
   methods: {
     async getImmos() {
       try {
-        const { data } = await axios.get('http://localhost:3000/immos');
+        const { data } = await axios.get('/immos');
         this.immos = data;
         console.log(this.immos);
       } catch (error) {
@@ -20,7 +20,7 @@ const myApp = {
     },
     async delImmo(id) {
       try {
-        const { data } = await axios.delete(`http://localhost:3000/immos/${id}`);
+        const { data } = await axios.delete(`/immos/${id}`);
         this.immo = data;
         this.getImmos();
         console.log('GELÖSCHT!!!');
@@ -34,7 +34,7 @@ const myApp = {
     },
     async patchImmo() {
       try {
-        const { data } = await axios.patch(`http://localhost:3000/immos/${this.id}`, {
+        const { data } = await axios.patch(`/immos/${this.id}`, {
           price: this.preis,
         });
         this.immo = data;
